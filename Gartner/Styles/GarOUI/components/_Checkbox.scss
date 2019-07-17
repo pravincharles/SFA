@@ -1,0 +1,56 @@
+@import "../Includes";
+
+// for the checkbox styling
+.checkbox {
+	font-weight: bold;
+	color: #067b9c;
+
+	& > input[type="checkbox"] {
+		&:checked, &:not(:checked) {
+			width: 0;
+			height: 0;
+			display: none;
+			opacity: 0;
+
+			& + label {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+
+				&:before {
+					font-family: "Fontawesome", sans-serif;
+					bottom: 1px;
+					// margin-right:25px;
+					width: 25px;
+					height: 25px;
+					border: 2px solid #c0dee6;
+					border-radius: 5px;
+					content: " ";
+				}
+			}
+		}
+
+		&:focus + label:before {
+			border-color: #067b9c;
+		}
+
+		&:checked + label:before, &:not(:checked) + label:before {
+			content: "\f00c";
+			font-size: 13px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 2px solid #c0dee6;
+		}
+
+		&:checked + label:before {
+			color: #067b9c;
+			border-color: #067b9c;
+		}
+
+		&:not(:checked) + label:before {
+			color: #c0dee6;
+			border: 2px solid #c0dee6;
+		}
+	}
+}

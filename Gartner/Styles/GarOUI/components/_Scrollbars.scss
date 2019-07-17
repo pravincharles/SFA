@@ -1,0 +1,16 @@
+@import "../Includes";
+
+#_swecontent, .apc-dialog > div.body > div.content, .select2-drop, * {
+	&::-webkit-scrollbar {
+		background-color:#eee;
+		z-index:1;
+		width:8px;
+	}
+	&::-webkit-scrollbar-thumb {
+		z-index:1;
+		background-color:#888;
+	}
+}
+
+
+

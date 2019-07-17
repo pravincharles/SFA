@@ -1,0 +1,183 @@
+@import "../includes";
+
+@mixin Buttons() {
+	.btn {
+		@include display(flex); //so that all icons an text are aligned in the center
+		@include justify-content(center);
+		@include align-items(center);
+
+		> i {
+			margin-right: 7px;
+		}
+
+		&.btn-icon {
+			padding: 3px 5px;
+			border-color: $linkcolor;
+			border-width: 1px;
+			font-size: .8em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 23px;
+
+			&.btn-circle {
+				outline: none;
+				padding: 0;
+				border-radius: 100%;
+				border-width: 1px;
+				width: 23px;
+				height: 23px;
+
+				&.btn-add {
+					&:before {
+						content: "\f067";
+						top: 5px;
+						left: 5px;
+					}
+				}
+			}
+
+			> i {
+				font-size: 1.2em;
+				margin-right: 0;
+			}
+		}
+
+		&.btn-m {
+			padding: 5px 8px;
+			font-size: .9em;
+		}
+
+		&.btn-s {
+			padding: 5px 8px;
+			font-size: .8em;
+		}
+
+		&.btn-xs {
+			padding: 2px 8px;
+			font-size: .8em;
+		}
+
+		&.btn-apc { //button with an icon on the left
+			padding-left: 27px;
+
+			&:before {
+				font-family: "FontAwesome";
+				position: absolute;
+				left: 9px;
+				top: 5px;
+			}
+
+			&.btn-s {
+				padding-left: 23px;
+			}
+		}
+
+		&.btn-add {
+			&:before {
+				content: "\f016"; //fa-file-o
+			}
+		}
+
+		&.btn-edit {
+			&:before {
+				content: "\f040"; //fa-pencil
+			}
+		}
+
+		&.btn-save {
+			background-color: #5cb85c; //from bootstrap
+			border-color: darken(#5cb85c, 5);
+
+			&:hover {
+				background-color: darken(#5cb85c, 5);
+				border-color: darken(#5cb85c, 10);
+			}
+
+			&:before {
+				content: "\f00c"; //fa-check
+			}
+		}
+
+		&.btn-delete {
+			&:before {
+				content: "\f014"; //fa-trash-o
+			}
+		}
+
+		&.btn-cancel {
+			background-color: #8598A2;
+			border-color: darken(#8598A2, 5);
+
+			&:before {
+				content: "\f00d"; //fa-times
+			}
+
+			&:hover {
+				background-color: darken(#8598A2, 5);
+				border-color: darken(#8598A2, 10);
+			}
+		}
+
+		&.btn-search {
+			&:before {
+				content: "\f002";
+			}
+		}
+
+		&.btn-reset {
+			&:before {
+				content: "\f0e2";
+			}
+		}
+
+		&.btn-uppercase {
+			text-transform: uppercase;
+		}
+
+		&.btn-prev {
+			padding: 2px 5px 2px 2px;
+		}
+
+		&.btn-next {
+			padding: 2px 2px 2px 5px;
+		}
+
+		&.btn-transparent {
+			background: transparent;
+			color: lighten($linkcolor, 5);
+		}
+
+		&.btn-yellow {
+			background-color: #F5A623;
+			border-color: darken(#F5A623, 5);
+		}
+
+		&.btn-gray {
+			background-color: #999999;
+			border-color: darken(#999999, 5);
+
+			&:hover {
+				background-color: darken(#999999, 5);
+				border-color: darken(#999999, 10);
+			}
+		}
+
+		&.btn-green {
+			background-color: #7FA037;
+			border-color: darken(#7FA037, 5);
+
+			&:hover {
+				background-color: darken(#7FA037,5);
+				border-color: darken(#7FA037, 10);
+			}
+		}
+
+		&[disabled] {
+			background-color: #999999;
+			cursor: not-allowed;
+			border-color: darken(#999999, 5);
+			pointer-events: auto; //OB
+		}
+	}
+}

@@ -1,0 +1,33 @@
+﻿@import "../Includes";
+
+@keyframes apcbounceIn {
+	0%, 40%, 100% {
+		transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	}
+
+	0% {
+		opacity: 0;
+		transform: scale3d(.3, .3, .3);
+	}
+
+	40% {
+		opacity: 1;
+		transform: scale3d(1.03, 1.03, 1.03);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+.apcbounceIn {
+	@include animation-duration(.65s !important); //!important to overwrite animate.css
+	animation-name: apcbounceIn;
+}
+
+.apcbounceOut {
+	@include animation-duration(.4s !important); //!important to overwrite animate.css
+	animation-name: apcbounceIn;
+	@include animation-direction(alternate-reverse);
+}

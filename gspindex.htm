@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Guide Sales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <link href="Gartner/Scripts/Bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- GSP Common CSS -->
+    <link href="files/custom/css/gsp_common.min.css?v=03182016" rel="stylesheet" />
+    <!-- Home CSS -->
+    <link href="home.min.css?v=03182016" rel="stylesheet" />
+</head>
+
+<body>
+    <div name="_swecontent" id="_swecontent" ot="_swecontent Frame" class="maxWidth">
+        <div class="apc apc-main feature-section container-fluid" style="padding: 15px 15px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="heading-bar">
+                            <h2 class="alert-header">Recommended Actions</h2>
+                        </div>
+                        <div class="active list-container apc-dt" id="alerts-table" apc-inited="true">
+                            <div class="row apc-dr" data-format="formatRecdActions" apc_rowid="1-4Q7P1-335">
+                                <input type="checkbox" name="action" title="Click to mark complete" class="alert-done-flag">
+                                <!-- <div class="icon-GSDeventalert event-icon"></div> -->
+                                <div class="action-heading"></div><span class="title"><a class="rec-action-drilldown" data-field="Description" href="#">Calendarize the Mid Year Review Meeting</a></span><span class="company-name" data-field="Account Name">AXIALL - PA</span><span class="action-date date" data-mask="MMM YYYY" data-field="Gar GSP Opty Close Date">Nov 2016</span><span class="action-value"><span data-field="Opportunity Currency Code">USD</span><span data-field="Gar Total Other Revenue" class="currency">289,637.00</span></span>
+                            </div>
+                            <div class="row apc-dr" data-format="formatRecdActions" apc_rowid="1-4Q7P1-334">
+                                <input type="checkbox" name="action" title="Click to mark complete" class="alert-done-flag">
+                                <!-- <div class="icon-GSDeventalert event-icon"></div> -->
+                                <div class="action-heading"></div><span class="title"><a class="rec-action-drilldown" data-field="Description" href="#">Download the Mid Year Review Impact Assessment</a></span><span class="company-name" data-field="Account Name">AXIALL - PA</span><span class="action-date date" data-mask="MMM YYYY" data-field="Gar GSP Opty Close Date">Nov 2016</span><span class="action-value"><span data-field="Opportunity Currency Code">USD</span><span data-field="Gar Total Other Revenue" class="currency">289,637.00</span></span>
+                            </div>
+                            <div class="row apc-dr" data-format="formatRecdActions" apc_rowid="1-47YED-377">
+                                <input type="checkbox" name="action" title="Click to mark complete" class="alert-done-flag">
+                                <!-- <div class="icon-GSDeventalert event-icon"></div> -->
+                                <div class="action-heading"></div><span class="title"><a class="rec-action-drilldown" data-field="Description" href="#">Generate the Service Agreement</a></span><span class="company-name" data-field="Account Name">GIANT EAGLE - PA</span><span class="action-date date" data-mask="MMM YYYY" data-field="Gar GSP Opty Close Date">Jun 2016</span><span class="action-value"><span data-field="Opportunity Currency Code">USD</span><span data-field="Gar Total Other Revenue" class="currency">80,000.00</span></span>
+                            </div>
+                            <div class="row apc-dr" data-format="formatRecdActions" apc_rowid="1-4I94X-9343">
+                                <input type="checkbox" name="action" title="Click to mark complete" class="alert-done-flag">
+                                <!-- <div class="icon-GSDeventalert event-icon"></div> -->
+                                <div class="action-heading"></div><span class="title"><a class="rec-action-drilldown" data-field="Description" href="#">Calendarize the Ask at 90 Meeting</a></span><span class="company-name" data-field="Account Name">NOVA CHEMICAL - PA</span><span class="action-date date" data-mask="MMM YYYY" data-field="Gar GSP Opty Close Date">Sep 2016</span><span class="action-value"><span data-field="Opportunity Currency Code">USD</span><span data-field="Gar Total Other Revenue" class="currency">19,581.00</span></span>
+                            </div>
+                            <div class="row apc-dr" data-format="formatRecdActions" apc_rowid="1-4RDH1-533">
+                                <input type="checkbox" name="action" title="Click to mark complete" class="alert-done-flag">
+                                <!-- <div class="icon-GSDeventalert event-icon"></div> -->
+                                <div class="action-heading"></div><span class="title"><a class="rec-action-drilldown" data-field="Description" href="#">Calendarize the Mid Year Review Meeting</a></span><span class="company-name" data-field="Account Name">EQT CORPORATION</span><span class="action-date date" data-mask="MMM YYYY" data-field="Gar GSP Opty Close Date">Dec 2016</span><span class="action-value"><span data-field="Opportunity Currency Code">USD</span><span data-field="Gar Total Other Revenue" class="currency">30,179.00</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of header -->
+        <!-- opty list and calculator -->
+        <div class="container body-container" style="padding: 15px 15px 0;">
+            <!-- Example row of columns -->
+            <div class="row body-content">
+                <div class="col-md-7" id="opty-main">
+                    <h2>                      
+                        <div class="oppty-header">
+                            <span>My Opportunities</span>                        
+                            <span class="pipe-divider"></span>
+                            <a class="create_oppty_link onhover-show-pointer">Create New Opportunity</a>
+                            <span id="gsphome-OODopties-indicator"><div id="gotoVP" title="View Opportunities Pipeline">Visual Pipeline</div></span>
+                            <div id="cont-link" class="icon-account-box" title="Contact Management" onclick="gotoContactsView();"></div>
+                            <button id="leads-link-box" class="btn btn-leads" title="Prospect Activities" onclick="gotoLeadsView();">Prospect Activities <span class="badge" id="LeadsCount">1</span></button>
+                        </div> 
+                        <div class="form-group width100perc">
+                            <div class="opportunities-search-section dropdown" title="Filter Opportunity">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#">
+                                    <span class="icon-filter">
+                                        <div id="oppty_filter_type" class="menu-item">All</div>
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                               <ul id="opty_filter" class="dropdown-menu dropdown-inverse" role="menu" aria-labelledby="dLabel">
+                                    <li><a href="#">All</a>
+                                    </li>
+                                    <li><a search-val="Renewal" href="#">Renewal</a></li>
+                                    <li><a search-val="Renewals at Risk" href="#">Renewals at Risk</a></li>
+                                    <li><a search-val="Prospect or New Business" href="#">Growth</a></li>
+                                    <li><a search-val="30" href="#">Next 30 Days</a></li>
+                                    <li><a search-val="90" href="#">Next 90 Days</a></li>
+                                </ul>                            
+                            </div>
+                            <div class="search-box">
+                                <input type="text" class="form-control" id="opp-search-field" title="Search Opportunity By Account Name" placeholder="Search By Account Name">                        
+                                <div class="input-group-addon-search" id="oppSearch">
+                                    <a href="#">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>                 
+                        <div id="hme-opty-prev-rec-set" class="pointerEventsNone paging-off" title="No Previous Records" style="visibility: visible;">
+                            <span class="glyphicon icon-expand-less paging-up-icon onhover-show-pointer"></span>
+                        </div>
+                    </h2>
+                    <div class="opp-list-container">
+                        <div class="empty-list">No Opportunities Found</div>
+                        <ul class="opp-list apc-dt" id="gsp_opty" apc-inited="true">
+                            <li class="warning flex-container apc-dr" apc_rowid="1-432CP-5398">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType" has-rg-data="N"><div class="icon-eventalert red-alert-circle"></div></a></span>
+                                <span class="flex-1">
+                                    <div class="opty-title-sect">
+                                        <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (EQT CORPORATION order#1613830 Expires Mar 2016 USD)">EQT CORPORATION</a></span>
+                                        <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                    </div>
+                                    <div class="opty-details-sect">
+                                        <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                        <span class="optylist-flex info">
+                                                                        <span data-field="Contact First Name">Karl</span>&nbsp;<span data-field="Contact Last Name">Coke</span>
+                                        </span>
+                                        <span class="optylist-flex">
+                                                                        <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                        <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">163,100.00</span>
+                                        </span>
+                                        <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Apr 2016</span>
+                                        <span class="optylist-flex opty_ss" data-field="Sales Stage">B/Develop</span>
+                                    </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-432CP-5216">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType" has-rg-data="N"><div class="icon-eventalert red-alert-circle"></div></a></span>
+                                <span class="flex-1">
+                                                                    <div class="opty-title-sect">
+                                                                        <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (SERVICELINK order#1613530 Expires Mar 2016 USD)">SERVICELINK</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                    <span class="optylist-flex info">
+                                                                            <span data-field="Contact First Name">Kiran</span>&nbsp;<span data-field="Contact Last Name">Vattem</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                            <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">25,000.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Apr 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">B/Develop</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-47TZG-17">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                                        <div class="opty-title-sect">
+                                                                            <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (GIANT EAGLE - PA order#1624785 Expires Jun 2016 USD)">GIANT EAGLE - PA</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                    <span class="optylist-flex info">
+                                                                                <span data-field="Contact First Name">Bob</span>&nbsp;<span data-field="Contact Last Name">George</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                                <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">80,000.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Jun 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">B/Develop</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-4GO4G-196">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType" has-rg-data="N"><div class="icon-eventalert red-alert-circle"></div></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (NOVA CHEMICAL - PA order#1632566 Expires Sep 2016 USD)">NOVA CHEMICAL - PA</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Lauren</span>&nbsp;<span data-field="Contact Last Name">Wilson</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">19,581.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Sep 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">B/Develop</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-4Q30J-85">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (AXIALL - PA order#1644785 Expires Nov 2016 USD)">AXIALL - PA</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Dot</span>&nbsp;<span data-field="Contact Last Name">Brookes</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">289,637.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Nov 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">B/Develop</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-4P3H6-625">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (EQT CORPORATION order#1640388 Expires Dec 2016 USD)">EQT CORPORATION</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Jeffrey</span>&nbsp;<span data-field="Contact Last Name">Hutchens</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">30,179.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Dec 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">B/Develop</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-4WD9F-90">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (WESCO DISTRIBUTION INC - PA order#1652786 Expires Jan 2017 USD)">WESCO DISTRIBUTION INC - PA</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Rob</span>&nbsp;<span data-field="Contact Last Name">Minicozzi</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">195,000.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Jan 2017</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">A/Commit</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-4W3C4-87">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA order#1653142 Expires Feb 2017 USD)">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label renewal" title="Type of Opportunity" data-format="garOptyType">Renewal</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Kevin</span>&nbsp;<span data-field="Contact Last Name">Mallon</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">109,500.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Feb 2017</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">A/Commit</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-1ZHAI2N">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (SC - USS - Jeffrey Paich - ESCL)">US STEEL - PITTSBURGH</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label growth" title="Type of Opportunity" data-format="garOptyType">Growth</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Frank</span>&nbsp;<span data-field="Contact Last Name">Cicero</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">84,400.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">Apr 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">D/Identify</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-2YLWBJI">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (1-2YLWBJI - LEEDSWORLD / POLYCONCEPT)">LEEDSWORLD / POLYCONCEPT</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label growth" title="Type of Opportunity" data-format="garOptyType">Growth</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Marc</span>&nbsp;<span data-field="Contact Last Name">Brown</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">80,000.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">May 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">D/Identify</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-2YMYHVH">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (SC - Lanxess - Scott Quolke - ESCL)">LANXESS - PA</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label growth" title="Type of Opportunity" data-format="garOptyType">Growth</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Scott</span>&nbsp;<span data-field="Contact Last Name">Quolke</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">54,200.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">May 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">D/Identify</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-2YMYHS2">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (SC - Eric Smith - Lanxess - ESCL)">LANXESS - PA</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label growth" title="Type of Opportunity" data-format="garOptyType">Growth</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Eric</span>&nbsp;<span data-field="Contact Last Name">Smith</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">54,200.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">May 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">D/Identify</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-2YUVAIE">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (John Price)">US STEEL - PITTSBURGH</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label growth" title="Type of Opportunity" data-format="garOptyType">Growth</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">John</span>&nbsp;<span data-field="Contact Last Name">Price</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">54,200.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">May 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">D/Identify</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-2YUVAB0">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (SC - USS - Jason Hayes - ESCL)">US STEEL - PITTSBURGH</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label growth" title="Type of Opportunity" data-format="garOptyType">Growth</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Jason</span>&nbsp;<span data-field="Contact Last Name">Hayes</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">54,200.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">May 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">D/Identify</span>
+                                </div>
+                                </span>
+                            </li>
+                            <li class="warning flex-container apc-dr" apc_rowid="1-2YUE2RU">
+                                <span class="flex-colm-opty-alertBox"><a href="#" class="alertAnch" tabindex="0" data-toggle="popover" data-format="optyAlertType"></a></span>
+                                <span class="flex-1">
+                                                            <div class="opty-title-sect">
+                                                                <span><a href="#" data-field="Account" data-format="opptyAccountName" data-drilldown="Opportunity Name" title="Opportunity Name (Zoll Medical - Mike Gabrin - EITL)">ZOLL MEDICAL</a></span>
+                                <span data-control="Primary Revenue Close Date" class="oppty-edit-icon icon-edit"></span>
+                                </div>
+                                <div class="opty-details-sect">
+                                    <span class="optylist-flex label growth" title="Type of Opportunity" data-format="garOptyType">Growth</span>
+                                    <span class="optylist-flex info">
+                                                                    <span data-field="Contact First Name">Mike</span>&nbsp;<span data-field="Contact Last Name">Gabrin</span>
+                                    </span>
+                                    <span class="optylist-flex">
+                                                                    <span class="currency_code" data-field="Currency Code" title="Currency Type">USD</span>&nbsp;
+                                    <span class="currency" data-field="Gar Total Revenue" title="Total Revenue">54,200.00</span>
+                                    </span>
+                                    <span class="optylist-flex date" data-mask="MMM YYYY" data-field="Close Date">May 2016</span>
+                                    <span class="optylist-flex opty_ss" data-field="Sales Stage">D/Identify</span>
+                                </div>
+                                </span>
+                            </li>
+                        </ul>
+                        <div id="hme-opty-next-rec-set" class="pointerEventsAuto paging-on" title="Next records" style="visibility: visible;">
+                            <span class="glyphicon icon-expand-more paging-down-icon onhover-show-pointer"></span>
+                        </div>
+                    </div>
+                <!--END: opp-list-container-->
+                </div>
+                <div class="col-md-5">
+                    <div class="calculator font-s">
+                        <div class="flex flex-horizontal font-bold">
+                            <div id="calcMyPlan" class="font-bold font-l" style="padding-right:10px;border-right: solid 1px #ccc;">My Success Plan</div>
+                            <div class="flex-1" style="padding-left: 10px">
+                                <a href="#" id="calcAdjust">Make Adjustments</a>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 flex-horizontal flex-padding-l flexwrap" style="margin-top: 20px; position: relative;">
+                            <div class="flex flex-vertical flex-nocenter" style="border-bottom: solid 1px #ccc; padding-right: 10px">
+                                <div class="flex-1" style="text-align:center;display: block;margin-top:8px">
+                                    Growth
+                                    <br> Required
+                                </div>
+                                <div class="flex-1" style="text-align: center;display: block;margin-top:3px;">Open CV</div>
+                                <div class="flex-1" style="align-items: center;text-align: center;">
+                                    YTD
+                                    <br> PREV
+                                </div>
+                            </div>
+                            <div style="border-bottom: solid 1px #ccc;" class="flex flex-vertical padding-0 font-bold">
+                                <div class="format flex-1" style="background-color:#CBCBCB;min-width:90px;box-shadow: 2px 4px 6px rgba(0,0,0,0.4);" id="calc_growthRequired">$566,720</div>
+                                <div style="background-color: #5B686F; min-width: 90px; color: #fff;box-shadow: 2px 4px 6px rgba(0,0,0,0.4);" class="flex-1 format" id="calc_openCV">$510,600</div>
+                                <div style="background-color: #8698A1; min-width: 90px; color: #fff;box-shadow: 2px 4px 6px rgba(0,0,0,0.4);" class="flex-1 format" id="calc_YTDPerformance">$374,800</div>
+                            </div>
+                            <div style="border-bottom: solid 1px #ccc; padding-left: 15px; padding-right: 0" class="flex flex-vertical padding-0 font-bold">
+                                <div id="goalHolder" class="flex-1">
+                                    <a id="addGoalMain" href="#" style="color: #333">Personal<br>Goal<br>$1,350,000</a>
+                                </div>
+                            </div>
+                            <div class="flex flex-vertical flex-1" style="margin-left: 15px">
+                                <div style="justify-content: flex-start;">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Retention Rate</td>
+                                                <td>:</td>
+                                                <td id="calc_retRate">80%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Avg Deal Size</td>
+                                                <td>:</td>
+                                                <td id="calc_dealSize">$33,000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="font-bold">Growth Deals Needed</div>
+                                <div class="font-bold" id="calc_growthNeeded">18</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-horizontal calc-curpipeline" style="display: none; margin-top: 20px;">
+                            <div class="font-bold flex-1" style="font-size: 1.2em">My Current Pipeline</div>
+                            <div id="date">
+                            </div>
+                        </div>
+                        <div class="flex flex-horizontal calc-curpipeline" style="display: none; margin-top: 5px;">
+                            <div style="background-color: #72B578; color: white; font-size: 1.2em; padding: 10px; text-align: center" class="font-bold flex-1">
+                                <div>
+                                    <span id="calc_appCurrent">$24,000</span>/<span id="calc_appTotal">$10,384,078</span>
+                                </div>
+                            </div>
+                            <div style="background-color: #72B578; color: white; font-size: 1.2em; padding: 10px; text-align: center; margin-left: 10px" class="font-bold flex-1">
+                                <div>
+                                    <span id="calc_quaCurrent">$166,800</span>/<span id="calc_quaTotal">$5,037,239</span>
+                                </div>
+                            </div>
+                            <div style="background-color: #72B578; color: white; font-size: 1.2em; padding: 10px; text-align: center; margin-left: 10px" class="font-bold flex-1">
+                                <div>
+                                    <span id="calc_proCurrent">$434,444</span>/<span id="calc_proTotal">$1,282,889</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-horizontal padding-0 font-bold calc-curpipeline" style="display: none; margin-top: 3px;">
+                            <div style="text-align: center; width: 33%">Appointments</div>
+                            <div style="text-align: center; width: 33%;">Qualified Ops</div>
+                            <div style="text-align: center; width: 33%;">Proposals</div>
+                        </div>
+                        <div id="popupPG" style="font-family: FaktConPro-Medium, Open Sans, sans-serif; display: none; position: absolute; background: #e3e3d3; padding: 10px; border-radius: 4px">
+                            PREV Goal:
+                            <br>
+                            <input type="text" id="tbPG" class="calc-popup">
+                            <br>
+                            <div style="margin-top: 10px">
+                                <button id="pgOK" style="padding: 5px; background-color: #72B578; border: solid 1px #72B578; width: 60px; border-radius: 4px;">OK</button>
+                                <button id="pgCancel" style="padding: 5px; background-color: #72B578; border: solid 1px #72B578; width: 60px; border-radius: 4px;">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- end of opty list and calculator -->
+    </div>
+</body>
+
+</html>

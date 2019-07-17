@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>GSP - Visual Pipeline Timeline View</title>
+    <link rel="stylesheet" href="Gartner/Scripts/Bootstrap/3.1.1/css/bootstrap.min.css?d=04222016" />
+    <link rel="stylesheet" href="Gartner/Styles/GarOUI/GarOUI.css?d=04222016" />
+    <link rel="stylesheet" href="files/custom/css/gsp_common.min.css?v=04222016" />
+    <link rel="stylesheet" href="vstimeline.min.css?v=04222016">
+    <link rel="stylesheet" href="Gartner/Styles/AnimateCSS/animate.min.css?d=04222016" />
+    <link rel="stylesheet" id="createopty_css" href="files/custom/css/create-opty.min.css?v=04222016" />
+    <link rel="stylesheet" href="edit-details-panel.min.css?v=04222016">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="vsp-body">
+    <div class="apc apc-main">
+        <div class="apc-main-hdr">-</div>
+        <div class="container-fluid header-bg">
+            <div class="container apc-header-container">
+                <!-- filter row -->
+                <!-- new header section with flexbox -->
+                <div class="vsp-body-disp">
+                    <div class="width-auto">
+                        <ul class="nav nav-tabs">
+                            <li role="presentation" id="switch-timeview" class="active"><a href="#">Pipeline By Time</a></li>
+                            <li role="presentation" id="switch-stageview" class="inactive"><a href="#">Pipeline By Stage</a></li>
+                        </ul>
+                    </div>
+                    <span class="disp-flex">
+                        <span class="filter-label">Type:</span>
+                    <span class="width-auto">
+                            <select class="form-control" id="opty-type-filter">
+                                <option value="all">All</option>
+                                <option value="Growth">Growth</option>
+                                <option value="Renewal">Renewal</option>
+                            </select>
+                        </span>
+                    </span>
+                    <span class="disp-flex">
+                        <span class="filter-label">Filter By:</span>
+                    <span class="width-auto">
+                            <select class="form-control" id="opty-timeline-filter">
+                                <option value="AA">All</option>
+                                <option value="SS">S/Suspect</option>
+                                <option value="DI">D/Identify</option>
+                                <option value="CQ">C/Qualify</option>
+                                <option value="BD">B/Develop</option>
+                                <option value="AC">A/Commit</option>
+                            </select>
+                        </span>
+                    </span>
+                    <span class="disp-flex">
+                        <span class="filter-label">Program:</span>
+                    <span class="width-auto">
+                            <select class="form-control" id="opty-timeline-program-filter">
+                                <option value="AA">All</option>
+                                <option value="EXPO">ExPonential</option>
+                                <option value="POC">Opportunities With POC</option>
+                                <!--<option value="NOPOC">No POC</option>-->
+                                <option value="TEAM">Team</option>
+                            </select>
+                        </span>
+                    </span>
+                    <span class="disp-none" id="aelistrow">
+                        <span class="filter-label">AE's :</span>
+                    <span class="width-auto">
+                            <select id="vst-aelist-select" class="form-control vst-aelist-form"></select>
+                        </span>
+                    </span>
+                    <span class="width-auto">
+                        <span id="timeline-new-opty" title="Create New Opportunity" class="btn">Create New Opportunity</span>
+                    </span>
+                    <span class="float-right width-auto">
+                        <span id="timeline-refresh" title="Refresh Opportunity List" class="icon-refresh"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Pipeline view holder starts-->
+        <div class="container-fluid container-fluid-ssv" id="pipelineviewholder">
+            <div class="container container-ssv">
+                <div id="vst-monthsholder" class="ssv-wrapper">
+                    <div id="pastmonthsholder" class="pfmonthshlder">
+                        <div class="table-wid">
+                            <div class="pfheader">Past Months</div>
+                            <div id="pmontstbody">
+                                <div id="pstm0" class="pstmtd">
+                                    <div class="pfbacklbldiv">October 2015</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="pstm1" class="pstmtd">
+                                    <div class="pfbacklbldiv">November 2015</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="pstm2" class="pstmtd">
+                                    <div class="pfbacklbldiv">December 2015</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="pstm3" class="pstmtd">
+                                    <div class="pfbacklbldiv">January 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="pstm4" class="pstmtd">
+                                    <div class="pfbacklbldiv">February 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="pstm5" class="pstmtd">
+                                    <div class="pfbacklbldiv">March 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-wid-align" id="prevbtnholder">
+                        <div class="nextprevbtn" id="vst-navmnthsprev"><i class="icon-caret-left"></i></div>
+                    </div>
+                    <div id="monthsholder">
+                        <div class="month-hdr-block">
+                            <div class="topbox">
+                                <div class="month-name-title">April 2016</div><span class="OptyAmt" id="m1OptyAmt">USD $499,701.00</span></div>
+                        </div>
+                        <div class="month-hdr-block">
+                            <div class="topbox">
+                                <div class="month-name-title">May 2016</div><span class="OptyAmt" id="m2OptyAmt">USD $1,613,500.00</span></div>
+                        </div>
+                        <div class="month-hdr-block">
+                            <div class="topbox">
+                                <div class="month-name-title">June 2016</div><span class="OptyAmt" id="m3OptyAmt">USD $664,000.00</span></div>
+                        </div>
+                        <div class="month-hdr-block">
+                            <div class="topbox">
+                                <div class="month-name-title">July 2016</div><span class="OptyAmt" id="m4OptyAmt">USD $140,000.00</span></div>
+                        </div>
+                    </div>
+                    <div class="table-wid-align" id="nxtbtnholder">
+                        <div class="nextprevbtn" id="vst-navmnthsnxt"><i class="icon-caret-right"></i></div>
+                    </div>
+                    <div id="futuremonthsholder" class="pfmonthshlder">
+                        <div class="table-wid">
+                            <div class="pfheader">Future Months</div>
+                            <div id="fmontstbody">
+                                <div id="ftrm0" class="ftrmtd">
+                                    <div class="pfbacklbldiv">August 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="ftrm1" class="ftrmtd">
+                                    <div class="pfbacklbldiv">September 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="ftrm2" class="ftrmtd">
+                                    <div class="pfbacklbldiv">October 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="ftrm3" class="ftrmtd">
+                                    <div class="pfbacklbldiv">November 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="ftrm4" class="ftrmtd">
+                                    <div class="pfbacklbldiv">December 2016</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                                <div id="ftrm5" class="ftrmtd">
+                                    <div class="pfbacklbldiv">January 2017</div>
+                                    <div class="pfmonthdiv ui-sortable"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Outer Table Starts-->
+                <div style="height: 806px;" class="ot-opty-scroll">
+                    <div id="vst-dndcontainer">
+                        <div style="height: 2936px;" class="month-col ui-sortable" id="vst-mnt1-col">
+                            <div title="drag to another month" data-optyid="1-29Z24S3" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-29Z24S3"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Brenner, Bianca"><span>Brenner, Bianca</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">437 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="COVESTRO - GITL - Bianca Brenner"><span>COVESTRO - GITL - Bianca Brenner</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">30,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2BS49L7" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2BS49L7"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Welsh, Bill"><span>Welsh, Bill</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">406 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Covestro - EITL - Bill Welsh"><span>Covestro - EITL - Bill Welsh</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>C/Qualify</span><span> | $</span><span class="currency currv">22,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-432CP-5398" data-cdate="04/30/2016" data-optytype="RENEWAL" class="m1-col-tile">
+                                <div class="tblock-title">
+                                    <a href="#" tabindex="0" data-toggle="popover" class="col-md-1 red-alert-icon icon-eventalert"></a><a class="col-md-8 month-tile-optyname month-opty-tile-acct-name" title="EQT CORPORATION">EQT CORPORATION</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" title="Cannot Delete Renewal Opportunity" class="icon-close disable" data-oid="1-432CP-5398"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="renewal-tag d1a">RENEWAL</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Coke, Karl"><span>Coke, Karl</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="EQT CORPORATION order#1613830 Expires Mar 2016 USD"><span>EQT CORPORATION order#1613830 Expires Mar 2016 USD</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>B/Develop</span><span> | $</span><span class="currency currv">163,100.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2WLOKTO" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="EXPEDIENT">EXPEDIENT</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2WLOKTO"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="White, John"><span>White, John</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">97 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="1-5890019877_EXPEDIENT_John_White"><span>1-5890019877_EXPEDIENT_John_White</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>S/Suspect</span><span> | $</span><span class="currency currv">0</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPIRZS" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="SERVICELINK">SERVICELINK</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPIRZS"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Vattem, Kiran"><span>Vattem, Kiran</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Servicelink - EXP - Kiran VATTEM"><span>Servicelink - EXP - Kiran VATTEM</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>C/Qualify</span><span> | $</span><span class="currency currv">75,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2SCS0CK" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="SERVICELINK">SERVICELINK</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2SCS0CK"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Jancay, Steve"><span>Jancay, Steve</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="ServiceLink - Steve Jancay - EITL"><span>ServiceLink - Steve Jancay - EITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">70,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-432CP-5216" data-cdate="04/30/2016" data-optytype="RENEWAL" class="m1-col-tile">
+                                <div class="tblock-title">
+                                    <a href="#" tabindex="0" data-toggle="popover" class="col-md-1 red-alert-icon icon-eventalert"></a><a class="col-md-8 month-tile-optyname month-opty-tile-acct-name" title="SERVICELINK">SERVICELINK</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" title="Cannot Delete Renewal Opportunity" class="icon-close disable" data-oid="1-432CP-5216"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="renewal-tag d1a">RENEWAL</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Vattem, Kiran"><span>Vattem, Kiran</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="SERVICELINK order#1613530 Expires Mar 2016 USD"><span>SERVICELINK order#1613530 Expires Mar 2016 USD</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>B/Develop</span><span> | $</span><span class="currency currv">25,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPN5FU" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="US STEEL - PITTSBURGH">US STEEL - PITTSBURGH</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPN5FU"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Stefanovic, Dusan"><span>Stefanovic, Dusan</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="US STEEL - GITL - Dusan Stefanovic"><span>US STEEL - GITL - Dusan Stefanovic</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">30,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2L7M4KR" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="US STEEL - PITTSBURGH">US STEEL - PITTSBURGH</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2L7M4KR"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Ruperto, Arthur"><span>Ruperto, Arthur</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">255 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="US Steel SC Opp"><span>US Steel SC Opp</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>S/Suspect</span><span> | $</span><span class="currency currv">1.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-1ZHAI2N" data-cdate="04/30/2016" data-optytype="GROWTH" class="m1-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="US STEEL - PITTSBURGH">US STEEL - PITTSBURGH</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-1ZHAI2N"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Cicero, Frank"><span>Cicero, Frank</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">68 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - USS - Jeffrey Paich - ESCL"><span>SC - USS - Jeffrey Paich - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">84,400.00</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 2936px;" class="month-col ui-sortable" id="vst-mnt2-col">
+                            <div title="drag to another month" data-optyid="1-1FWPEEH" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="AXIALL - PA">AXIALL - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-1FWPEEH"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Brookes, Dot"><span>Brookes, Dot</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">199 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Axiall - ESCL WG - Dot Brookes"><span>Axiall - ESCL WG - Dot Brookes</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">19,500.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2E8TFMG" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2E8TFMG"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Beal, Priscilla"><span>Beal, Priscilla</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">199 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="BAYER - GML - Jay Audino"><span>BAYER - GML - Jay Audino</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">100,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2F20Y4H" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2F20Y4H"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Fortunato, Michael"><span>Fortunato, Michael</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">349 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Bayer - GITL WG - Mike Fortunato"><span>Bayer - GITL WG - Mike Fortunato</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>C/Qualify</span><span> | $</span><span class="currency currv">50,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2E9TC49" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2E9TC49"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Siegel, Cyndi"><span>Siegel, Cyndi</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">199 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="BAYER - GITL - CYNDI SEIGEL"><span>BAYER - GITL - CYNDI SEIGEL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">50,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2OOL9HJ" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2OOL9HJ"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Kamerbeek, Greg"><span>Kamerbeek, Greg</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">206 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Bayer - EITL - Greg Kamerbeek"><span>Bayer - EITL - Greg Kamerbeek</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2WXMXLR" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2WXMXLR"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Bryant, Christine"><span>Bryant, Christine</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">94 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="COVESTRO - Christine Bryant - GML"><span>COVESTRO - Christine Bryant - GML</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2SDWG2R" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2SDWG2R"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Ferry, Jack"><span>Ferry, Jack</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">138 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Covestro - EITL - Jack Ferry"><span>Covestro - EITL - Jack Ferry</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>C/Qualify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2ZL2LME" data-cdate="05/26/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2ZL2LME"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Alam, Sharmin"><span>Alam, Sharmin</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="Covestro - Sharmin Alam - ESCL"><span>Covestro - Sharmin Alam - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPLR27" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPLR27"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Ferry, Jack"><span>Ferry, Jack</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Covestro - GTP - Jack Ferry"><span>Covestro - GTP - Jack Ferry</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>C/Qualify</span><span> | $</span><span class="currency currv">115,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2ZL2LPP" data-cdate="05/26/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2ZL2LPP"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Merrell, Sam"><span>Merrell, Sam</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="Covestro - Sam Merrell - EITL"><span>Covestro - Sam Merrell - EITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPLRCK" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPLRCK"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Cole, David"><span>Cole, David</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Covestro - GITL - David Cole"><span>Covestro - GITL - David Cole</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">30,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2ZL2LP6" data-cdate="05/26/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2ZL2LP6"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Brenner, Bianca"><span>Brenner, Bianca</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="Covestro - Bianca Brenner - SCL"><span>Covestro - Bianca Brenner - SCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">32,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2WXJ8R9" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="CARMEUSE LIME &amp; STONE NORTH AMERICA">CARMEUSE LIME &amp; STONE NORTH AMERICA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2WXJ8R9"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Worms, Patrick"><span>Worms, Patrick</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">94 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Caremeuse - Patrick Worms - EXP"><span>Caremeuse - Patrick Worms - EXP</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2UUOTMK" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GENERAL NUTRITION - PA">GENERAL NUTRITION - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2UUOTMK"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Jamieson, Jamie"><span>Jamieson, Jamie</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">118 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="GNC - EITL - Jamie Jamieson"><span>GNC - EITL - Jamie Jamieson</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">0</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YUJFP7" data-cdate="05/17/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GENERAL NUTRITION - PA">GENERAL NUTRITION - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YUJFP7"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Kent, Jay"><span>Kent, Jay</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">68 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - GNC - Jay Kent - ESCL"><span>SC - GNC - Jay Kent - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YUJFLV" data-cdate="05/17/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GENERAL NUTRITION - PA">GENERAL NUTRITION - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YUJFLV"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Cherry, Steve"><span>Cherry, Steve</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">68 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - GNC - Steve Cherry - ESCL"><span>SC - GNC - Steve Cherry - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YUJFJ9" data-cdate="05/17/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GENERAL NUTRITION - PA">GENERAL NUTRITION - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YUJFJ9"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Sayers, Gregg"><span>Sayers, Gregg</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">68 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - Gregg Sayers"><span>SC - Gregg Sayers</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2DEMYGP" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GIANT EAGLE - PA">GIANT EAGLE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2DEMYGP"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Gill, Jeremy"><span>Gill, Jeremy</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">381 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Giant Eagle - GITL - Jeremy GILL"><span>Giant Eagle - GITL - Jeremy GILL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">50,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2CCHJDN" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GIANT EAGLE - PA">GIANT EAGLE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2CCHJDN"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Dhanda, Anuj"><span>Dhanda, Anuj</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">396 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="GIANT EAGLE - EXP - TBD"><span>GIANT EAGLE - EXP - TBD</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">0.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YMYHVH" data-cdate="05/12/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="LANXESS - PA">LANXESS - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YMYHVH"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Quolke, Scott"><span>Quolke, Scott</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">73 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - Lanxess - Scott Quolke - ESCL"><span>SC - Lanxess - Scott Quolke - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YMYHS2" data-cdate="05/12/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="LANXESS - PA">LANXESS - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YMYHS2"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Smith, Eric"><span>Smith, Eric</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">73 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - Eric Smith - Lanxess - ESCL"><span>SC - Eric Smith - Lanxess - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YLWBJI" data-cdate="05/12/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="LEEDSWORLD / POLYCONCEPT">LEEDSWORLD / POLYCONCEPT</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YLWBJI"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Brown, Marc"><span>Brown, Marc</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">73 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="1-2YLWBJI - LEEDSWORLD / POLYCONCEPT"><span>1-2YLWBJI - LEEDSWORLD / POLYCONCEPT</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YMRWS6" data-cdate="05/12/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="NOVA CHEMICAL - PA">NOVA CHEMICAL - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YMRWS6"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Clark, Nigel"><span>Clark, Nigel</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">73 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - NOVA Chem - Mark Bloom - ESCL"><span>SC - NOVA Chem - Mark Bloom - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">0</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2WXJ8NB" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="RUE 21">RUE 21</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2WXJ8NB"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Holland, Michael"><span>Holland, Michael</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">94 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Rue 21 - Mike Holland - EXP"><span>Rue 21 - Mike Holland - EXP</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YUVAIE" data-cdate="05/17/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="US STEEL - PITTSBURGH">US STEEL - PITTSBURGH</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YUVAIE"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Price, John"><span>Price, John</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">68 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="John Price"><span>John Price</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YUVAB0" data-cdate="05/17/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="US STEEL - PITTSBURGH">US STEEL - PITTSBURGH</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YUVAB0"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Hayes, Jason"><span>Hayes, Jason</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">68 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="SC - USS - Jason Hayes - ESCL"><span>SC - USS - Jason Hayes - ESCL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2C2R98T" data-cdate="05/31/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="WESCO DISTRIBUTION INC - PA">WESCO DISTRIBUTION INC - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2C2R98T"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Bauer, Tim"><span>Bauer, Tim</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">402 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="GITL"><span>GITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>S/Suspect</span><span> | $</span><span class="currency currv">30,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2ZL2LHO" data-cdate="05/26/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="WESCO DISTRIBUTION INC - PA">WESCO DISTRIBUTION INC - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2ZL2LHO"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Minicozzi, Rob"><span>Minicozzi, Rob</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="WESCO - Rob Minicozzi - GTP"><span>WESCO - Rob Minicozzi - GTP</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">115,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2YUE2RU" data-cdate="05/17/2016" data-optytype="GROWTH" class="m2-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="ZOLL MEDICAL">ZOLL MEDICAL</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2YUE2RU"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Gabrin, Mike"><span>Gabrin, Mike</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">68 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Zoll Medical - Mike Gabrin - EITL"><span>Zoll Medical - Mike Gabrin - EITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">54,200.00</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 2936px;" class="month-col ui-sortable" id="vst-mnt3-col">
+                            <div title="drag to another month" data-optyid="1-2DEMYH5" data-cdate="06/30/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="84 LUMBER COMPANY LP - PA">84 LUMBER COMPANY LP - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2DEMYH5"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Warner, Ken"><span>Warner, Ken</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">381 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Test"><span>Test</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">50,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2ZL2LIR" data-cdate="06/30/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2ZL2LIR"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Kreider, John"><span>Kreider, John</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="Bayer - John Kreider - EXP"><span>Bayer - John Kreider - EXP</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">82,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2SDWG3M" data-cdate="06/30/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2SDWG3M"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Ritacco, Carmen"><span>Ritacco, Carmen</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">160 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Carmen Ritacco EITL"><span>Carmen Ritacco EITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>S/Suspect</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPLR3Z" data-cdate="06/30/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER MATERIALSCIENCE - PA">BAYER MATERIALSCIENCE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPLR3Z"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Cole, David"><span>Cole, David</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="COVESTRO - GTP - David Cole"><span>COVESTRO - GTP - David Cole</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">115,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2ZXU4ND" data-cdate="06/12/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BLSNE">BLSNE</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2ZXU4ND"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Pickle, Dill"><span>Pickle, Dill</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="1-2ZXU4ND - BLSNE"><span>1-2ZXU4ND - BLSNE</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">0</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2CD6HN1" data-cdate="06/30/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GENERAL NUTRITION - PA">GENERAL NUTRITION - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2CD6HN1"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Yater, Paul"><span>Yater, Paul</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">160 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="GNC - EXP - Paul Yater"><span>GNC - EXP - Paul Yater</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPN579" data-cdate="06/30/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GIANT EAGLE - PA">GIANT EAGLE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPN579"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Pollak, Adam"><span>Pollak, Adam</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Adam Pollak - GITL"><span>Adam Pollak - GITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">30,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-47TZG-17" data-cdate="06/30/2016" data-optytype="RENEWAL" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="GIANT EAGLE - PA">GIANT EAGLE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" title="Cannot Delete Renewal Opportunity" class="icon-close disable" data-oid="1-47TZG-17"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="renewal-tag d1a">RENEWAL</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="George, Bob"><span>George, Bob</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="GIANT EAGLE - PA order#1624785 Expires Jun 2016 USD"><span>GIANT EAGLE - PA order#1624785 Expires Jun 2016 USD</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>B/Develop</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2ZWDLQV" data-cdate="06/09/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="NEW ACCOUNT 101">NEW ACCOUNT 101</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2ZWDLQV"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="E, Will"><span>E, Will</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="1-2ZWDLQV - NEW ACCOUNT 101"><span>1-2ZWDLQV - NEW ACCOUNT 101</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">39,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2EA3TLR" data-cdate="06/30/2016" data-optytype="GROWTH" class="m3-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="NOVA CHEMICAL - PA">NOVA CHEMICAL - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2EA3TLR"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Wilson, Lauren"><span>Wilson, Lauren</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">361 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="NOVA CHEM - GTP - Lauren Wilson"><span>NOVA CHEM - GTP - Lauren Wilson</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">108,000.00</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 2936px;" class="month-col ui-sortable" id="vst-mnt4-col">
+                            <div title="drag to another month" data-optyid="1-2RPOHP1" data-cdate="07/29/2016" data-optytype="GROWTH" class="m4-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPOHP1"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Pearce, Bob"><span>Pearce, Bob</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="BAYER - GITL - Bob Pearce"><span>BAYER - GITL - Bob Pearce</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">80,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPKG3Z" data-cdate="07/29/2016" data-optytype="GROWTH" class="m4-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPKG3Z"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Ladue, Mike"><span>Ladue, Mike</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Mike Ladue GITL"><span>Mike Ladue GITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">30,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-2RPKGAM" data-cdate="07/29/2016" data-optytype="GROWTH" class="m4-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA">BAYER BUSINESS &amp; TECHNOLOGY SERVICE - PA</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-2RPKGAM"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Palacio, Frank"><span>Palacio, Frank</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder">
+                                        <div class="more60Days">171 Days</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Frank Palacio GITL"><span>Frank Palacio GITL</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">30,000.00</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-30RT64I" data-cdate="07/20/2016" data-optytype="GROWTH" class="m4-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="SERVICELINK">SERVICELINK</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-30RT64I"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Tvarlapati, Kiran"><span>Tvarlapati, Kiran</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="Test Opty"><span>Test Opty</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>D/Identify</span><span> | $</span><span class="currency currv">0</span></div>
+                                </div>
+                            </div>
+                            <div title="drag to another month" data-optyid="1-30SMXT2" data-cdate="07/20/2016" data-optytype="GROWTH" class="m4-col-tile">
+                                <div class="tblock-title"><a class="col-md-9 month-tile-optyname month-opty-tile-acct-name" title="US STEEL - PITTSBURGH">US STEEL - PITTSBURGH</a>
+                                    <div class="col-md-3 vst-edit-options">
+                                        <a href="#" tabindex="0" data-toggle="popover" class="icon-close month-opty-remove active" data-oid="1-30SMXT2"></a>
+                                    </div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2">
+                                        <div class="growth-tag d1a">GROWTH</div>
+                                    </div>
+                                    <div class="col-md-8 dont-wrap-text" title="Jene, John"><span>Jene, John</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-2 days-in-stage-holder"></div>
+                                    <div class="col-md-8 dont-wrap-text" title="1-6397826984_US STEEL - PITTSBURGH_John_Jene"><span>1-6397826984_US STEEL - PITTSBURGH_John_Jene</span></div>
+                                </div>
+                                <div class="tblock">
+                                    <div class="col-md-offset-2 col-md-10"><span>S/Suspect</span><span> | $</span><span class="currency currv">0</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end ot-opty-scroll -->
+            </div>
+        </div>
+        <!-- Pipeline view holder ends-->
+        <div id="_apcWorking" class="padding bg bg-darker bg-color apc-hidden text-center font-xl apc-main apc-dialog-content" style="width: 300px; display: none;">
+            <i class="fa fa-spinner fa-pulse"></i><span>&nbsp;Working...</span>
+        </div>
+    </div>
+</body>
+
+</html>

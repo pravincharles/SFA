@@ -1,0 +1,155 @@
+@import "../Includes";
+
+@mixin Backgrounds() {
+	.bg {
+		background-color: $garBG;
+		border-color: darken($garBG, 10);
+	}
+
+	.bg-light {
+		background-color: $garBGLight;
+		border-color: darken($garBGLight, 10);
+		color: #fff;
+	}
+
+	.bg-blue-lightest {
+		background-color: $blue-lightest;
+	}
+
+	.bg-blue-extralight {
+		background-color: #E2F4FD;
+	}
+
+	.bg-skyblue {
+		background-color: #DCEBF3;
+	}
+
+	.bg-darker {
+		background-color: $blue-light;
+	}
+
+	.bg-blue-dark {
+		background-color: $blue-dark;
+	}
+
+	.bg-blue-darker {
+		background-color: $blue-darker;
+	}
+
+	.bg-blue-gray {
+		background-color: #487284;
+	}
+
+	.bg-white {
+		background-color: #fff;
+	}
+
+	.bg-gray {
+		background-color: #ccc;
+		border-color: darken(#ccc, 10);
+		color: #222;
+
+		.box {
+			border-color: #333;
+		}
+	}
+
+	.bg-blue-highlight {
+		background-color: $blue-highlight-bg;
+	}
+
+	.bg-blue-highlight {
+		li label {
+			color: #696969;
+		}
+	}
+
+	.bg-gray-6 {
+		background-color: #666;
+		border-color: #555;
+	}
+
+	.bg-gray-light {
+		background-color: #E1E1E1;
+	}
+
+	.bg-gray-lighter {
+		background-color: #F1F1F1;
+	}
+
+	.bg-red {
+		background-color: $red;
+		border-color: darken($red, 10);
+		color: white;
+
+		&.pointer:hover {
+			opacity: 1;
+			background-color: darken($red, 10);
+		}
+
+		.box {
+			border-color: #fff;
+		}
+	}
+
+	.bg-green {
+		background-color: #46A946;
+		border-color: darken(#46A946, 10);
+		color: white;
+	}
+
+	.bg-amber {
+		background-color: #F76620;
+		border-color: darken(#F76620, 5);
+		color: white;
+
+		a {
+			color: white;
+		}
+
+		&.pointer:hover {
+			opacity: 1;
+			background-color: darken(#F76620, 10);
+		}
+
+		.box {
+			border-color: white;
+		}
+	}
+
+	.bg-color {
+		color: #fff;
+
+		label, .label {
+			color: #68AECC;
+		}
+
+		ul.list {
+			&.list-underline {
+				> li {
+					border-right-color: #7095B3;
+				}
+			}
+		}
+
+		a, .link, i.pointer {
+			color: #BDF4F7;
+
+			&:hover {
+				color: white;
+			}
+		}
+
+		i.link:hover {
+			color: #fff;
+		}
+
+		.apc-ud { //apc-up-down for showing numbers with a red down arrow or green up arrow to the left
+			&.apc-down {
+				&:before {
+					color: #FF6678;
+				}
+			}
+		}
+	}
+}

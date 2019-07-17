@@ -1,0 +1,56 @@
+﻿@import "../Includes";
+
+$selected: $blue-light;
+
+.apctabs {
+	> .apc-tl { //tablist
+		@include display(flex);
+		border-bottom: solid 5px $selected;
+		font-family: Lato;
+
+		> .apc-tab {
+			margin: 0 2px;
+			padding: 7px 14px;
+			border: solid 1px #bbb;
+			border-bottom: none;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+			cursor: pointer;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&.apc-tab-sel {
+				background: $selected;
+				border-color: darken($selected,10);
+				color: white;
+			}
+		}
+	}
+
+	&.tabs-sharp {
+		> .apc-tl { //tablist
+			> .apc-tab {
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+			}
+		}
+	}
+
+	&.tabs-fullwidth {
+		> .apc-tl { //tablist
+			border-bottom-width: 7px;
+
+			> .apc-tab {
+				@include flex(1);
+				margin: 0;
+				padding: 10px 14px; //larger padding for fullwidth tabs
+			}
+		}
+	}
+}

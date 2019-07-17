@@ -1,0 +1,300 @@
+@import "../Includes";
+
+$dialogBorder: #999 !default;
+
+@mixin getArrows ($size, $allStyles: false) {
+	&.apc-da {
+		&:before, &:after {
+			border-width: $size + 1px;
+
+			@if($allStyles) {
+				content: " ";
+				position: absolute;
+				border-style: solid;
+				border-color: transparent;
+			}
+		}
+	}
+
+	&.apc-da-u {
+		margin-top: $size !important; //!important required because siebel's theme-accordian has _swecontent > div { margin: 0}
+		&:before, &:after {
+			margin-left: $size * -1;
+
+			@if($allStyles) {
+				left: 50%;
+			}
+		}
+
+		&:before {
+			top: $size * -2;
+
+			@if($allStyles) {
+				border-bottom-color: $dialogBorder;
+			}
+		}
+
+		&:after {
+			top: ($size * -2) + 1px;
+
+			@if($allStyles) {
+				border-bottom-color: #fff;
+			}
+		}
+	}
+
+	&.apc-da-d {
+		margin-top: $size * -1 !important; //!important required because siebel's theme-accordian has _swecontent > div { margin: 0}
+		&:before, &:after {
+			margin-left: $size * -1;
+
+			@if($allStyles) {
+				left: 50%;
+			}
+		}
+
+		&:before {
+			bottom: $size * -2;
+
+			@if($allStyles) {
+				border-top-color: $dialogBorder;
+			}
+		}
+
+		&:after {
+			bottom: ($size * -2) + 1px;
+
+			@if($allStyles) {
+				border-top-color: #fff;
+			}
+		}
+	}
+
+	&.apc-da-el {
+		&:before, &:after {
+			left: $size * 2;
+		}
+	}
+
+	&.apc-da-er {
+		&:before, &:after {
+			right: $size;
+
+			@if($allStyles) {
+				left: auto;
+			}
+		}
+	}
+
+
+	&.apc-da-r {
+		margin-left: $size !important; //!important required because siebel's theme-accordian has _swecontent > div { margin: 0}
+		&:before, &:after {
+			margin-top: ($size * -1);
+
+			@if($allStyles) {
+				top: 50%;
+			}
+		}
+
+		&:before {
+			left: $size * -2;
+
+			@if($allStyles) {
+				border-right-color: $dialogBorder;
+			}
+		}
+
+		&:after {
+			left: ($size * -2) + 1px;
+
+			@if($allStyles) {
+				border-right-color: #fff;
+			}
+		}
+	}
+
+	&.apc-da-l {
+		margin-left: $size * -1 !important; //!important required because siebel's theme-accordian has _swecontent > div { margin: 0}
+		&:before, &:after {
+			margin-top: ($size * -1);
+
+			@if($allStyles) {
+				top: 50%;
+			}
+		}
+
+		&:before {
+			right: $size * -2;
+
+			@if($allStyles) {
+				border-left-color: $dialogBorder;
+			}
+		}
+
+		&:after {
+			right: ($size * -2) + 1px;
+
+			@if($allStyles) {
+				border-left-color: #fff;
+			}
+		}
+	}
+
+	&.apc-da-et {
+		&:before, &:after {
+			top: ($size * 2) - ($size / 2);
+		}
+	}
+
+	&.apc-da-eb {
+		&:before, &:after {
+			top: auto;
+			bottom: $size / 2;
+		}
+	}
+}
+
+.apc-dialog {
+	position: absolute;
+	border-radius: 7px;
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
+
+	> div.body {
+		@include display(flex);
+		@include flex-direction(column);
+		position: relative;
+		border: solid 1px $dialogBorder;
+		border-radius: 7px;
+		background: white;
+
+		> div.header {
+			border-top-left-radius: 7px;
+			border-top-right-radius: 7px;
+			padding: 25px 30px 0;
+			@include flex-shrink(0);
+		}
+
+		> div.content {
+			cursor: default; //to override jQuery UI's draggable cursor
+		}
+
+		> div.apc-dialog-close {
+			display: none; //not required for tooltips
+			font-size: 1.2em;
+			position: absolute;
+			right: 15px;
+			top: 14px;
+			cursor: pointer;
+			color: $dialogBorder;
+		}
+
+		> div.footer {
+			@include display(flex);
+			@include flex-shrink(0);
+			border-bottom-left-radius: 7px;
+			border-bottom-right-radius: 7px;
+			padding: 0 30px 20px;
+			cursor: default; //to override jQuery UI's draggable cursor
+			> .footer-left {
+				@include flex(1);
+				@include align-items(center);
+			}
+		}
+	}
+
+	@include getArrows(8px, true);
+
+	&.dialog-s {
+		> div.body {
+			> div.apc-dialog-close {
+				font-size: 16px;
+				right: 7px;
+				top: 5px;
+			}
+		}
+	}
+
+	&.dialog-xs {
+		> div.body {
+			border-radius: 4px;
+		}
+	}
+
+	&.dialog-modal {
+		@include display(flex);
+		@include justify-content(center);
+		@include align-items(center);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 3; //because siebel as z-index: 1 for #s_sctrl_tabView and ul.ui-tabs-nav li.ui-tabs-active a, see _Siebel-or
+		background-color: rgba(0, 0, 0, 0.5);
+
+		> div.body {
+			overflow: auto;
+			max-height: 93%;
+			max-width: 93%;
+			border: solid 1px #777;
+
+			> .content {
+				overflow: auto;
+				padding: 20px 30px;
+			}
+
+			> div.apc-dialog-close {
+				display: block; //show the cross mark, which is hidden above
+			}
+		}
+
+		&.dialog-s {
+			> div.body {
+				> div.header {
+					padding: 17px 20px 0;
+				}
+
+				> div.content {
+					padding: 17px 20px;
+				}
+			}
+		}
+
+		&.dialog-xs {
+			> div.body {
+				border-radius: 4px;
+
+				> div.header {
+					padding: 9px 12px 0;
+				}
+
+				> div.content {
+					padding: 9px 12px;
+				}
+			}
+		}
+
+		&.dialog-xxs {
+			> div.body {
+				> div.content {
+					padding: 3px 5px;
+				}
+			}
+		}
+	}
+
+
+	&.dialog-working {
+		background: transparent;
+
+		> div.body {
+			> div.content {
+				padding: 0 !important;
+			}
+
+			> .apc-dialog-close {
+				display: none !important;
+			}
+		}
+	}
+}

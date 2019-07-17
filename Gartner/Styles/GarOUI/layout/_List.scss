@@ -1,0 +1,188 @@
+@import "../Includes";
+
+@mixin List() {
+	.list {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		@include display(flex);
+
+		> li {
+			padding: 0 5px;
+			flex-shrink: 0;
+		}
+
+		&.list-spacing { //requried if something has overridden padding (like .apc-column and you want the spacing back)
+			> li {
+				padding: 0 5px;
+			}
+		}
+
+		&.list-spacing-xs {
+			> li {
+				padding: 0 2px;
+			}
+		}
+
+		&.list-spacing-s {
+			> li {
+				padding: 0 3px;
+			}
+		}
+
+		&.list-spacing-l {
+			> li {
+				padding: 0 8px;
+			}
+		}
+
+		&.list-spacing-xl {
+			> li {
+				padding: 0 11px;
+			}
+		}
+
+		&.list-spacing-xxl {
+			> li {
+				padding: 0 15px;
+			}
+		}
+
+		&.list-spacing-2x {
+			> li {
+				padding: 0 20px;
+			}
+		}
+
+		&.list-spacing-3x {
+			> li {
+				padding: 0 30px;
+			}
+		}
+
+		&.list-spacing-none {
+			> li {
+				padding: 0;
+			}
+		}
+
+		> li:first-child {
+			padding-left: 0;
+		}
+
+		> li:last-child {
+			padding-right: 0;
+		}
+
+		&.list-items-justify-center {
+			@include justify-content(center);
+		}
+
+		&.list-items-space-around {
+			@include justify-content(space-around);
+		}
+
+		&.list-items-align-center {
+			@include align-items(center);
+		}
+
+		&.list-items-align-end {
+			@include align-items(flex-end);
+		}
+
+		&.list-underline {
+			> li {
+				border-right: solid 1px #CFDCE3;
+
+				&.list-underline-none {
+					border-right: none;
+				}
+
+				&:last-of-type { // on hover over that sales team, we have an issue of a line popping up so this removes that line
+					border-right: none;
+				}
+			}
+
+			> li.line {
+				padding: 0;
+				border-right: solid 1px #CFDCE3;
+				margin-left: 8px;
+				margin-right: 8px;
+				align-self: stretch; //if list-items-align-center is used, the line will be invisible
+				&.line--3 {
+					margin-top: 3px;
+					margin-bottom: 3px;
+				}
+			}
+		}
+	}
+
+	.list-v {
+		@include flex-direction(column);
+
+		> li {
+			padding: 5px 0;
+			flex-shrink: 0; //so that the list does not shrink if the parent has a fixed height
+		}
+
+		&.list-spacing-xs {
+			> li {
+				padding: 2px 0;
+			}
+		}
+
+		&.list-spacing-s {
+			> li {
+				padding: 3px 0;
+			}
+		}
+
+		&.list-spacing-l {
+			> li {
+				padding: 8px 0;
+			}
+		}
+
+		&.list-spacing-xl {
+			> li {
+				padding: 11px 0;
+			}
+		}
+
+		&.list-spacing-xxl {
+			> li {
+				padding: 15px 0;
+			}
+		}
+
+		&.list-spacing-2x {
+			> li {
+				padding: 20px 0;
+			}
+		}
+
+		&.list-spacing-3x {
+			> li {
+				padding: 30px 0;
+			}
+		}
+
+		&.list-spacing-none {
+			> li {
+				padding: 0;
+			}
+		}
+
+		> li:last-child {
+			padding-bottom: 0;
+		}
+
+		> li:first-child {
+			padding-top: 0;
+		}
+	}
+
+	ul.hastable {
+		padding: 20px 25px;
+	}
+}

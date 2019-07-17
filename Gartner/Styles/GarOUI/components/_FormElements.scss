@@ -1,0 +1,101 @@
+@import "../Includes";
+
+//OB
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio], input[type=checkbox], input[type=radio] {
+	position: static;
+	margin-left: 0;
+	margin-top: 0;
+	margin: 0;
+}
+
+.label, label {
+	cursor: default;
+	padding-left: 0;
+	font-weight: normal;
+	font-size: 100%; //OB
+	text-align: inherit; //OB
+	margin-bottom: 0; //OB
+}
+
+h2 {
+	font-size: 27.5px;
+}
+
+h3 {
+	font-size: 19px;
+}
+//end OB
+
+.select2-container .select2-choice {
+	height: 32px;
+}
+
+.select2-container.select2-container-disabled .select2-choice {
+	border-color: #88B0C0;
+}
+
+.select2-container .select2-choice > .select2-chosen {
+	font-family: "Open Sans";
+	font-size: 13.333px;
+	color: #333;
+	margin-top: 2px;
+}
+
+.select2-container .select2-choice, .select2-container .select2-choice .select2-arrow {
+	border-color: #88b0c0;
+}
+
+.select2-container .select2-choice .select2-arrow {
+	width: 19px;
+}
+
+.select2-results {
+	font-family: "Open Sans";
+	font-size: 13px;
+}
+
+.select2-container .select2-choice .select2-arrow b {
+	background: none;
+
+	&:after {
+		position: absolute;
+		top: 2px;
+		right: 5px;
+		font-family: FontAwesome;
+		font-size: 14px;
+		content: "\f0d7"; //fa-caret-up
+		color: $linkcolor;
+	}
+}
+
+.select2-container.select2-container-disabled .select2-choice .select2-arrow b {
+	&:after {
+		color: #aaa;
+	}
+}
+
+.select2-container .select2-choice abbr { //the cross mark to clear the selected value
+	background: none;
+
+	&:after {
+		font-family: FontAwesome;
+		content: "\f00d";
+		position: absolute;
+		top: -7px;
+		right: 0;
+		padding-left: 10px;
+		color: $linkcolor;
+		font-size: 13.5px;
+	}
+
+	&:hover {
+		&:after {
+			color: darken($linkcolor, 10);
+		}
+	}
+}
+
+.apc-pick {
+	cursor: pointer;
+	min-width: 200px;
+}

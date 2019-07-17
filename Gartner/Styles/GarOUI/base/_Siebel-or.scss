@@ -1,0 +1,236 @@
+@import "../Includes";
+
+//override siebel elements
+#_sweview {
+	padding: 0;
+}
+
+#SS_TaskUIPane {
+	margin: 0;
+}
+
+.siebui-logo {
+	background-repeat: no-repeat;
+	margin-top: 12px;
+	width: 145px;
+}
+
+#s_sctrl #s_sctrl_tabView { //ADDED z-index: 3 top APCDialog.scc to handle this
+	//z-index: auto; //these things are appearing OVER the apcDialog
+}
+
+#s_sctrl #s_sctrl_tabScreen.ui-tabs ul.ui-tabs-nav li.ui-tabs-active a { //ADDED z-index: 3 top APCDialog.scc to handle this
+	//z-index: auto; //these things are appearing OVER the apcDialog
+}
+
+#_sweclient {
+	&.apc-fullscreen {
+		#_swecontent {
+			background-color: $pageBackground;
+			padding: 0 0 30px 0; //bottom padding so that there is some gap at the bottom of the page
+			&::-webkit-scrollbar {
+				background-color: #eee;
+				z-index: 1;
+				width: 11px;
+				border-radius: 5px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				z-index: 1;
+				background-color: #999;
+				border: 1px solid transparent;
+				border-radius: 5px;
+				background-clip: content-box;
+			}
+		}
+
+		#_swethreadbar {
+			display: none;
+		}
+
+		#Dashboard {
+			display: none;
+		}
+
+		#_swescrnbar {
+			@include transition(all 0.5s);
+			margin-right: 11px; //not required if width of scrollbar is reduced from 11p to 9px above in &::-webkit-scrollbar
+		}
+
+		#_swecontent { //move the html container to the top and left
+			overflow: auto; //REQUIRED, not sure why scrollbars get hidden in ITA
+			top: 40px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border: none;
+
+			> div {
+				padding: 0;
+			}
+		}
+
+		.sidebarNavButton { //GSP's hamburger
+			display: none !important; //important required because GSP is appending this to the page
+		}
+
+		.apc-hamburger { //element added in apc.js
+			position: absolute;
+			top: 43px;
+			left: 0;
+			color: $linkcolor;
+			@include transition(all 0.5s);
+			z-index: 98;
+
+			&:after {
+				content: "\f0c9"; //fa-bars (hamburger)
+				font-size: 1.5em;
+				background: #fff;
+				cursor: pointer;
+				padding: 7px;
+				border: solid 1px #b9d0dc;
+				border-left-width: 0;
+				border-top-width: 0;
+				font-family: FontAwesome;
+			}
+		}
+
+		&.beautify {
+			&.apc-menu-tree {
+				#_swescrnbar {
+					> div {
+						padding-top: 7px; //some space above the menu
+					}
+
+					.tier1Back {
+						background: none; //remove wierd line that appears on the right of the menu
+						border-right: solid 1px #b9d0dc;
+					}
+
+					ul.dynatree-container > li a {
+						padding: 5px 5px 5px 25px;
+						font-family: "Open Sans";
+						color: #333;
+					}
+
+					ul.dynatree-container img {
+						//width: 25px; //required for Bootstrap 3.3.4, since I switched over to 3.1.1, it has been removed
+					}
+
+					ul.dynatree-container ul > li {
+						padding: 0 5px 0 0;
+					}
+
+					ul.dynatree-container > li > ul > li {
+						border-bottom: solid 1px #ccc;
+					}
+
+					ul.dynatree-container span a:hover {
+						color: #000 !important;
+						background-color: $pageBackground !important;
+						border-radius: 0;
+					}
+
+					ul.dynatree-container span.dynatree-active a {
+						color: #fff !important;
+						background-color: #3D74A5 !important;
+						border-radius: 0;
+					}
+				}
+			}
+		}
+
+		&.apc-menu-tree {
+			#_swescrnbar {
+				margin: 0 !important; //important required because GSP is writing styles directly to the element
+				margin-left: -200px !important; //important required because GSP is writing styles directly to the element
+				margin-right: 0 !important; //important required because GSP is writing styles directly to the element
+				background: #fff !important; //there's some gradient in the default siebel menu
+				top: 40px;
+
+				.sidebarNavButton { //the default Siebel button to hide the sidebar
+					display: none;
+				}
+			}
+
+			&.menu-show-tree {
+				#_swescrnbar {
+					margin-left: 0 !important; //important required because GSP is writing styles directly to the element
+					border-top: none;
+				}
+
+				.apc-hamburger {
+					left: 199px; //not 200px so that this overwrites the right border on the tree menu
+					&:after {
+						content: "\f00d"; //fa-times
+					}
+				}
+			}
+		}
+
+		&.apc-menu-tabs {
+			#s_sctrl #s_sctrl_tabScreen.ui-tabs ul.ui-tabs-nav li a {
+				height: auto !important;
+				color: #444;
+			}
+
+			#s_sctrl #s_sctrl_tabScreen.ui-tabs ul.ui-tabs-nav li.ui-tabs-active a, #s_sctrl #s_sctrl_tabScreen.ui-tabs ul.ui-tabs-nav li.ui-state-hover a {
+				color: #fff;
+				font-weight: 400;
+			}
+
+			#_swescrnbar {
+				margin-top: 0 !important; //important required because GSP is writing styles directly to the element
+				margin-left: 0;
+				font-family: "Open Sans";
+
+				.siebui-nav-tabs {
+					z-index: -10;
+				}
+
+				.siebui-view-navs {
+					> .siebui-nav-tabs:first-of-type {
+						background: #aec5d1; //siebel has made this transparent and when the page is scrolled, the content is visible behind
+						padding: 3px 0 0 5px;
+					}
+				}
+
+				#s_sctrl_tabView {
+					box-shadow: none;
+					border-bottom: solid 1px #244152;
+					border-radius: 0;
+					//z-index: auto; //ADDED z-index: 3 top APCDialog.scc to handle this
+				}
+			}
+
+			#_sweview {
+				@include transition(all 0.5s);
+			}
+
+			&.menu-show-tabs {
+				#_swescrnbar {
+					margin-top: 13px !important; //important required because GSP is writing styles directly to the element
+					.siebui-nav-tabs {
+						z-index: 1;
+					}
+
+					.siebui-nav-tabScreen {
+						margin-top: -13px;
+					}
+				}
+
+				.apc-hamburger {
+					top: 95px;
+
+					&:after {
+						content: "\f00d"; //fa-times
+					}
+				}
+
+				#_sweview {
+					margin-top: 52px;
+				}
+			}
+		}
+	}
+}

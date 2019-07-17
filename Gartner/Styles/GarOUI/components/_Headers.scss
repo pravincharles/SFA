@@ -1,0 +1,114 @@
+@import "../Includes";
+
+@mixin Headers() {
+	.apc-header-bg {
+		background: linear-gradient(to bottom,#3c748c 0,#508aa4 50%,#5b97b1 80%);
+		padding: 10px 0 17px;
+		color: #fff;
+
+		.label {
+			color: lighten($headerLabel, 20);
+		}
+
+		a {
+			color: #fff;
+		}
+	}
+
+	.apc-header {
+		padding: 0;
+		list-style: none;
+		font-size: 21px;
+
+		> li {
+			padding: 15px 20px;
+
+			&:first-child {
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+			}
+
+			&:last-child {
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+		}
+
+		h1 {
+			font-size: 27px;
+		}
+
+		h2 {
+			font-size: 24px;
+		}
+
+		a, .link {
+			color: #fff;
+		}
+
+		label, .label {
+			font-size: 17px;
+			color: $headerLabel;
+			font-weight: 500;
+		}
+
+		.label-gray {
+			color: $label-gray; //TODO: remove
+		}
+
+		.icon-edit {
+			font-size: .8em;
+		}
+
+		.header-top {
+			background: linear-gradient(180deg, #0f374b, #10415b);
+			float: none; //override Siebel's theme
+		}
+
+		.header-center {
+			background: linear-gradient(180deg, #17536f, #175b7b);
+		}
+
+		.header-bottom {
+			background: linear-gradient(180deg, #17536f, #175b7b);
+		}
+
+		ul.list {
+			&.list-underline {
+				> li {
+					border-right-color: #7095B3;
+				}
+			}
+		}
+
+		.header-white-bg { //TODO: remove
+			color: black;
+		}
+
+		&.apc-header-radius-none {
+			> li {
+				padding: 15px 20px;
+
+				&:first-child {
+					border-top-left-radius: 0;
+					border-top-right-radius: 0;
+				}
+
+				&:last-child {
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+				}
+			}
+		}
+	}
+
+	.breadcrumbs {
+		font-family: FaktConPro-Light;
+		font-size: 1.1em;
+
+		a {
+			font-family: FaktConPro-Light;
+			text-decoration: underline;
+		}
+	}
+}

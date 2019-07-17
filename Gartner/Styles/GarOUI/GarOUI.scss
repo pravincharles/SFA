@@ -1,0 +1,413 @@
+﻿@import "Includes";
+
+@import "base/Siebel-or";
+@import "base/Fonts";
+@import "base/Backgrounds";
+@import "base/MarginsPaddings";
+@import "base/Typography";
+
+@import "layout/List";
+@import "layout/Grid";
+@import "layout/Form";
+
+@import "components/Animate";
+@import "components/Buttons";
+@import "components/Box";
+@import "components/APCDialog";
+@import "components/APCTabs";
+@import "components/APCSlider";
+@import "components/Headers";
+@import "components/FormElements";
+
+.apc {
+	*, *:before, *:after {
+		box-sizing: border-box;
+
+		&::-webkit-scrollbar {
+			background-color: #eee;
+			z-index: 1;
+			width: 8px;
+			height: 11px;
+			border-radius: 5px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			z-index: 1;
+			background-color: #999;
+			border: 1px solid transparent;
+			border-radius: 5px;
+			background-clip: content-box;
+		}
+	}
+
+	font-size: 15px;
+	font-family: FaktConPro-Medium;
+	color: #333 !important; //remove !important after getting rid of jQuery UI
+	line-height: 1;
+
+	a, .link, i.pointer {
+		color: $linkcolor;
+		cursor: pointer;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&.link-underline {
+			text-decoration: underline;
+		}
+
+		&.link-underline-none {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	i.link:hover {
+		text-decoration: none;
+		color: darken($linkcolor, 10);
+	}
+
+	h1, h2, h3, h5, h5 {
+		font-family: 'FaktConPro-Medium' !important; //important required because if link class is added to headers, font changes
+		font-weight: bold;
+		margin: 0;
+		padding: 0;
+		line-height: 1; //OB
+	}
+
+	.text { //block of text, like a paragraph
+		line-height: 1.5;
+
+		p {
+			margin: 0 0 .8em 0;
+		}
+	}
+
+	.select2-container .select2-choice:hover {
+		text-decoration: none; //the above a adds an underline for Select2 dropdowns on hover
+	}
+
+	input[type='text'], input[type='number'], textarea {
+		border-color: #88b0c0 !important; //remove !important after getting rid of jQuery UI
+	}
+
+	.btn {
+		font-family: "Open Sans", Verdana, Arial;
+		//font-size: 15px;
+		//padding: 8px 12px;
+		//line-height: 1;
+		//white-space: nowrap;
+		//cursor: pointer;
+		//@include user-select(none);
+		//border-radius: 4px;
+		color: #fff;
+		background-color: $buttonBG;
+		border: 1px solid darken($buttonBG, 5);
+		position: relative;
+
+		&:hover {
+			background-color: darken($buttonBG, 10);
+		}
+
+		&:focus {
+			color: #fff; //OB
+		}
+	}
+
+	.fix-fakt {
+		margin-top: .4em;
+	}
+}
+
+.select2-drop {
+	z-index: 10000; //dropdowns inside dialogs going behind because dialog has a z-index of 10000
+}
+
+@include Typography();
+@include Buttons();
+@include List();
+@include Headers();
+@include Grid();
+@include Form();
+@include Box();
+@include MarginsPaddings();
+@include Backgrounds();
+@include APCSlider();
+
+.flex-1 {
+	@include flex(1);
+}
+
+.flex-2 {
+	@include flex(2);
+}
+
+.apc-ud { //apc-up-down for showing numbers with a red down arrow or green up arrow to the left
+	position: relative;
+	display: inline-block;
+	padding-left: 14px;
+
+	&:before {
+		font-family: FontAwesome;
+		position: absolute;
+		left: 0;
+		top: -2px;
+	}
+
+	&.apc-up {
+		&:before {
+			color: #95BC45;
+			content: "\f139";
+		}
+	}
+
+	&.apc-down {
+		&:before {
+			color: $red;
+			content: "\f13a";
+		}
+	}
+}
+
+.ellipsis {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+hr {
+	border: none;
+	background-color: $pageBackground;
+	height: 1px;
+	margin: 0;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.overflow-auto {
+	overflow: auto;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.absolute-right {
+	right: 0;
+}
+
+.fixed {
+	position: fixed;
+}
+
+.apc-hidden {
+	display: none;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.pointer {
+	cursor: pointer;
+
+	&:hover {
+		opacity: .8;
+	}
+}
+
+i.pointer {
+	color: $linkcolor;
+}
+
+.cursor-not-allowed {
+	cursor: not-allowed;
+}
+
+.cursor-default {
+	cursor: default;
+}
+
+.width-100p {
+	width: 100%;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.prewrap {
+	white-space: pre-wrap;
+}
+
+.border-all {
+	border-width: 2px;
+	border-style: solid;
+}
+
+.border-right {
+	border-right-width: 2px;
+	border-right-style: solid;
+	border-color: $pageBackground;
+}
+
+.border-bottom {
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-color: $pageBackground;
+}
+
+.border-s {
+	border-width: 1px;
+}
+
+.border-l {
+	border-width: 3px;
+}
+
+.border-white {
+	border-color: #fff;
+}
+
+.border-red {
+	border-color: $red;
+}
+
+.border-amber {
+	border-color: #F76620;
+}
+
+.column-count-3 {
+	@include column-count(3);
+}
+
+.circle {
+	border-radius: 50%;
+	@include display(flex);
+	@include align-items(center);
+	@include justify-content(center);
+}
+
+.icon {
+	font-size: 21px;
+}
+
+.hover-parent {
+	.hover-child {
+		visibility: hidden;
+	}
+
+	&:hover {
+		.hover-child {
+			visibility: visible;
+		}
+	}
+}
+
+.bg-hover:hover {
+	background-color: lighten($pageBackground, 15);
+}
+
+.apc-editbutton, .apc-deletebutton {
+	cursor: pointer;
+	color: lighten(#175775, 15);
+}
+
+.rotate-315 {
+	@include transform(rotate(315deg));
+}
+
+.transition-all {
+	@include transition(all 0.5s);
+}
+
+//=======================APC Datatable and Datarow classes===========================
+.apc-dt {
+	.action-bar {
+		&.first-page {
+			.apc-prevbutton {
+				display: none;
+				//cursor: default;
+				//color: #aaa;
+				//&:focus {
+				//outline: none;
+				//}
+			}
+		}
+
+		&.last-page {
+			.apc-nextbutton {
+				display: none;
+				//cursor: default;
+				//color: #aaa;
+				//&:focus {
+				//outline: none;
+				//}
+			}
+		}
+	}
+}
+
+.popover {
+	font-family: 'FaktPro-Medium';
+}
+
+.gartner-links {
+	height: 25px;
+	margin-top: 7px;
+	margin-right: 10px;
+	padding: 0 8px;
+	line-height: 28px;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(180deg, #5c8bae, #31678d);
+	width: 100px;
+	float: right;
+}
+
+.gartner-links > div > a {
+	color: #fff;
+}
+
+.gartner-links > div > a > .caret {
+	margin-top: -5px;
+}
+
+#MsgBar.siebui-msgbar-bkgrnd-msg-high, #MsgBar.siebui-msgbar-bkgrnd-msg-normal, #MsgBar.siebui-msgbar-bkgrnd-msg-urgent, #MsgBar.siebui-msgbarbkgrnd-msgread-nomsgs {
+	width: 32px !important;
+	height: 32px !important;
+	margin-top: 3px !important;
+	text-align: center !important;
+	padding-top: 10px !important;
+	font-size: 1.1em !important;
+	text-shadow: none;
+	box-shadow: none;
+}
+
+#MsgBar.siebui-msgbar-bkgrnd-msg-high, #MsgBar.siebui-msgbar-bkgrnd-msg-normal, #MsgBar.siebui-msgbar-bkgrnd-msg-urgent {
+	background: url(../../Pages/Images/icon-bell-orange.png) -2px top no-repeat !important;
+	color: #fff !important;
+}
+
+#MsgBar.siebui-msgbarbkgrnd-msgread-nomsgs {
+	background: url(../../Pages/Images/icon-bell-darkgray.png) -2px top no-repeat !important;
+	color: #ccc !important;
+}
+
+.radius-top {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}

@@ -1,0 +1,112 @@
+@import "../Includes";
+
+@mixin Typography() {
+	.opensans {
+		font-family: Open Sans, sans-serif, Verdana, Arial !important;
+	}
+
+	.lato {
+		font-family: Lato, sans-serif, Verdana, Arial !important;
+		font-size: .9em; //Lato is a bit bigger than Fakt, can be removed if Fakt is removed
+	}
+
+	.blue {
+		color: #287C96;
+	}
+
+	.white {
+		color: #FFF;
+	}
+
+	.red {
+		color: #D0021B;
+	}
+
+	.amber {
+		color: #F76620;
+	}
+
+	.green {
+		color: #95BC45;
+	}
+
+	.brown-light {
+		color: #924545;
+	}
+
+	.dark-gray {
+		color: #4a4a4a;
+	}
+
+	.ucase {
+		text-transform: uppercase;
+	}
+
+	.font-xxxs {
+		font-size: .6em;
+	}
+
+	.font-xxs {
+		font-size: .7em;
+	}
+
+	.font-xs {
+		font-size: .8em;
+	}
+
+	.font-s {
+		font-size: .9em;
+	}
+
+	.font-m {
+		font-size: 1.1em;
+	}
+
+	.font-l {
+		font-size: 1.2em;
+	}
+
+	.font-xl {
+		font-size: 1.4em;
+	}
+
+	.font-xxl {
+		font-size: 1.7em;
+	}
+
+	.font-2x {
+		font-size: 2em;
+	}
+
+	.bold, font-bold {
+		font-weight: 700;
+	}
+
+	.font-normal {
+		font-weight: normal !important; //!important to overwrite H1, H2 tags
+	}
+
+	.font-thin {
+		font-weight: 300 !important; //!important to overwrite H1, H2 tags
+	}
+
+	.italic {
+		font-style: italic;
+	}
+
+	.font-light {
+		opacity: .9;
+	}
+
+	.font-lighter {
+		opacity: .8;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.text-right {
+		text-align: right;
+	}
+}

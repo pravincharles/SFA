@@ -1,0 +1,51 @@
+/*gsp_common_custom.css*/
+.tier1Back {
+    padding-top: 48px;
+}
+
+/*theme-nav-accordion.css */
+
+#_swescrnbar ul.dynatree-container > li a {
+    font-size: 1.04em;
+    display: block;
+    font-family: FaktConPro-Medium;
+    color: #217E99;
+    padding: 8px 10px 3px 30px;
+    margin: 0;
+    white-space: normal;
+    line-height: 1.2em;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+#_swescrnbar ul.dynatree-container>li a:hover {
+    background-color: transparent !important;
+    color: #217E99 !important;
+    font-weight: bold !important;
+}
+
+#_swescrnbar > div {
+    padding-top: 0;
+}
+
+#_swescrnbar {
+    left: 0;
+    width: 200px;
+    height: auto;
+    z-index: 1;
+}
+
+
+#_swescrnbar, #_swecontent {
+    top: 96px;
+    bottom: 0px;
+    position: absolute;
+}
+
+#_swescrnbar ul.dynatree-container span.dynatree-active a {
+    background-color: transparent !important;
+    color: #5f5f5f !important;
+}
+.gsp_hide_nav_link {display: none !important;}
+
+.hamburger-button-closed, .hamburger-button-opened {background-color: #FCFCFC !important;}

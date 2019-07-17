@@ -1,0 +1,367 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?195qda');
+	src:url('fonts/icomoon.eot?#iefix195qda') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?195qda') format('truetype'),
+		url('fonts/icomoon.woff?195qda') format('woff'),
+		url('fonts/icomoon.svg?195qda#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-contact-us:before {
+	content: "\e685";
+}
+.icon-send:before {
+	content: "\e663";
+}
+.icon-filter-list:before {
+	content: "\e662";
+}
+.icon-lock:before {
+	content: "\e65e";
+}
+.icon-lock-outline:before {
+	content: "\e65f";
+}
+.icon-promo:before {
+	content: "\e65b";
+}
+.icon-dehaze:before {
+	content: "\e65c";
+}
+.icon-more:before {
+	content: "\e65d";
+}
+.icon-exit-to-app:before {
+	content: "\e605";
+}
+.icon-schedule:before {
+	content: "\e63f";
+}
+.icon-settings:before {
+	content: "\e640";
+}
+.icon-more-vert:before {
+	content: "\e62b";
+}
+.icon-domain:before {
+	content: "\e641";
+}
+.icon-notifications:before {
+	content: "\e642";
+}
+.icon-notifications-none:before {
+	content: "\e643";
+}
+.icon-star:before {
+	content: "\e644";
+}
+.icon-star-outline:before {
+	content: "\e645";
+}
+.icon-playlist-add:before {
+	content: "\e646";
+}
+.icon-repeat:before {
+	content: "\e647";
+}
+.icon-sort:before {
+	content: "\e648";
+}
+.icon-looks-one:before {
+	content: "\e649";
+}
+.icon-looks-two:before {
+	content: "\e64a";
+}
+.icon-looks-3:before {
+	content: "\e64b";
+}
+.icon-looks-4:before {
+	content: "\e64c";
+}
+.icon-looks-5:before {
+	content: "\e64d";
+}
+.icon-looks-6:before {
+	content: "\e64e";
+}
+.icon-replay:before {
+	content: "\e64f";
+}
+.icon-rotate-left:before {
+	content: "\e61a";
+}
+.icon-check-box:before {
+	content: "\e650";
+}
+.icon-check-box-outline-blank:before {
+	content: "\e651";
+}
+.icon-radio-button-off:before {
+	content: "\e652";
+}
+.icon-lens:before {
+	content: "\e653";
+}
+.icon-radio-button-on:before {
+	content: "\e654";
+}
+.icon-check-circle-outline:before {
+	content: "\e600";
+}
+.icon-DealHub:before {
+	content: "\e603";
+}
+.icon-edit:before {
+	content: "\e67e";
+}
+.icon-account-box:before {
+	content: "\e602";
+}
+.icon-announcement:before {
+	content: "\e604";
+}
+.icon-refresh:before {
+	content: "\e606";
+}
+.icon-trash:before {
+	content: "\e678";
+}
+.icon-document:before {
+	content: "\e608";
+}
+.icon-done:before {
+	content: "\e609";
+}
+.icon-calendar:before {
+	content: "\e00c";
+}
+.icon-help:before {
+	content: "\e60b";
+}
+.icon-highlight-remove:before {
+	content: "\e60c";
+}
+.icon-info:before {
+	content: "\e63b";
+}
+.icon-info-outline:before {
+	content: "\e60e";
+}
+.icon-language:before {
+	content: "\e60f";
+}
+.icon-eventalert:before {
+	content: "\e610";
+}
+.icon-favorite:before {
+	content: "\e611";
+}
+.icon-expand:before {
+	content: "\e612";
+}
+.icon-compare:before {
+	content: "\e613";
+}
+.icon-my-library-add:before {
+	content: "\e614";
+}
+.icon-my-library-books:before {
+	content: "\e615";
+}
+.icon-cancel:before {
+	content: "\e616";
+}
+.icon-client dashboard:before {
+	content: "\e617";
+}
+.icon-inbox:before {
+	content: "\e675";
+}
+.icon-phone:before {
+	content: "\e601";
+}
+.icon-quick-contacts-dialer:before {
+	content: "\e61b";
+}
+.icon-quick-contacts-mail:before {
+	content: "\e61d";
+}
+.icon-plus_drk:before {
+	content: "\e61e";
+}
+.icon-plus_open:before {
+	content: "\e61f";
+}
+.icon-flag:before {
+	content: "\e6f1";
+}
+.icon-remove-circle:before {
+	content: "\e620";
+}
+.icon-remove-circle-outline:before {
+	content: "\e621";
+}
+.icon-attachment:before {
+	content: "\e622";
+}
+.icon-folder-shared:before {
+	content: "\e623";
+}
+.icon-local-offer:before {
+	content: "\e624";
+}
+.icon-chevron-left:before {
+	content: "\e625";
+}
+.icon-chevron-right:before {
+	content: "\e626";
+}
+.icon-close:before {
+	content: "\e627";
+}
+.icon-expand-less:before {
+	content: "\e628";
+}
+.icon-expand-more:before {
+	content: "\e629";
+}
+.icon-more-horiz:before {
+	content: "\e62a";
+}
+.icon-more-vert2:before {
+	content: "\e62c";
+}
+.icon-unfold-less:before {
+	content: "\e62d";
+}
+.icon-unfold-more:before {
+	content: "\e62e";
+}
+.icon-group:before {
+	content: "\e62f";
+}
+.icon-group-outline:before {
+	content: "\e630";
+}
+.icon-contact:before {
+	content: "\e631";
+}
+.icon-contact-add:before {
+	content: "\e632";
+}
+.icon-contact-outline:before {
+	content: "\e633";
+}
+.icon-global:before {
+	content: "\e634";
+}
+.icon-share:before {
+	content: "\e635";
+}
+.icon-home:before {
+	content: "\e607";
+}
+.icon-open-in-new:before {
+	content: "\e60a";
+}
+.icon-swap-vert:before {
+	content: "\e60d";
+}
+.icon-content-copy:before {
+	content: "\e618";
+}
+.icon-control-point-duplicate:before {
+	content: "\e619";
+}
+.icon-rotate-left2:before {
+	content: "\e636";
+}
+.icon-rotate-right:before {
+	content: "\e637";
+}
+.icon-slideshow:before {
+	content: "\e638";
+}
+.icon-beenhere:before {
+	content: "\e639";
+}
+.icon-layers:before {
+	content: "\e63a";
+}
+.icon-arrow-drop-down:before {
+	content: "\e63c";
+}
+.icon-arrow-drop-up:before {
+	content: "\e63d";
+}
+.icon-location-city:before {
+	content: "\e63e";
+}
+.icon-poll:before {
+	content: "\e660";
+}
+.icon-eventalert2:before {
+	content: "\e661";
+}
+.icon-link:before {
+	content: "\f0c1";
+}
+.icon-unlink:before {
+	content: "\f127";
+}
+.icon-ShapeCopy3:before {
+	content: "\e659";
+}
+.icon-duplicate:before {
+	content: "\e65a";
+}
+.icon-caret-down:before {
+	content: "\f0d7";
+}
+.icon-caret-up:before {
+	content: "\f0d8";
+}
+.icon-caret-left:before {
+	content: "\f0d9";
+}
+.icon-caret-right:before {
+	content: "\f0da";
+}
+.icon-drive-ms-word:before {
+	content: "\e655";
+}
+.icon-drive-pdf:before {
+	content: "\e656";
+}
+.icon-drive-ms-excel:before {
+	content: "\e657";
+}
+.icon-drive-ms-powerpoint:before {
+	content: "\e658";
+}
+.icon-linkedin-square:before {
+	content: "\f08c";
+}
+.icon-linkedin:before {
+	content: "\f0e1";
+}
+.icon-filter:before {
+	content: "\e682";
+}
